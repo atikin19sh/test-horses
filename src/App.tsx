@@ -17,26 +17,10 @@ function App() {
         <Route element={<Pictures/>} path="/pictures"/>
       </Route>
     )
-    // {
-    //   path: "/",
-    //   element: <MainPage />,
-    // },
-    // {
-    //   path: "/game",
-    //   element: <Game />,
-    // },
-    // {
-    //   path: "/profile",
-    //   element: <Profile />,
-    // },
-    // {
-    //   path: "/pictures",
-    //   element: <Pictures />,
-    // },
-);
+  );
 
   return (
-      <RouterProvider router={router} />
+    <RouterProvider router={router} />
   )
 }
 
