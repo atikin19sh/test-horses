@@ -1,12 +1,13 @@
 import type { Bet } from "../../types";
 
 interface Props {
+    money: number;
     bets: Bet[];
+    raceResults: string[] | null;
 }
 
-function Monitor({bets}: Props) {
+function Monitor({money, bets, raceResults}: Props) {
     const betsSum = bets.reduce((acc, bet) => acc + bet.amount, 0);
-    const money = 0;
 
     return <div>
         <h2>Monitor</h2>
@@ -24,6 +25,12 @@ function Monitor({bets}: Props) {
             )
         })}
         <hr />
+        {raceResults && (
+            <div>
+                Результаты забега:
+                {raceResults.map((name, index) => <div key={name}>{index + 1}: {name}</div>)}
+            </div>
+        )}
     </div>
 }
 

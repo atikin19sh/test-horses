@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useState } from "react";
 import type { Bet } from "../../types";
 
 interface Props {
@@ -8,15 +8,16 @@ interface Props {
 }
 
 function Horse({name, addNewBet, deleteBet}: Props) {
-    const betAmount = useRef<number>(0);
+    const [betAmount, setBetAmount] = useState<number | string>("");
 
     const inputNewBet: React.ChangeEventHandler<HTMLInputElement> = (event) => {
         const value = event.target.value;
-        betAmount.current = Number(value);
+        console.log(value)
+        setBetAmount(Number(value));
     }
 
     const onAddNewBetClick = () => {
-        const amount = betAmount.current;
+        const amount = Number(betAmount);
 
         if (!amount) {
             alert("Ставка должна быть больше 0!")
@@ -24,6 +25,8 @@ function Horse({name, addNewBet, deleteBet}: Props) {
         }
 
         addNewBet({name, amount});
+
+        setBetAmount("");
     }
 
     const onDeleteBetClick = () => {
@@ -33,7 +36,7 @@ function Horse({name, addNewBet, deleteBet}: Props) {
     return <>
         <h3>Horse {name}</h3>
         <div>
-            <input type="number" placeholder="Введите ставку" onChange={inputNewBet} />
+            <input type="number" placeholder="Введите ставку" onChange={inputNewBet} value={betAmount}/>
             <button type="button" onClick={onAddNewBetClick}>Сделать ставку</button>
             <button type="button" onClick={onDeleteBetClick}>Снять ставку</button>
         </div>

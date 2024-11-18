@@ -1,7 +1,6 @@
+import { horses } from "../../constants";
 import type { Bet } from "../../types";
 import Horse from "../Horse/Horse";
-
-const horses = ["Никита", "Ильдар", "Александр", "Андрей"];
 
 interface Props {
     addNewBet: (bet: Bet) => void;
